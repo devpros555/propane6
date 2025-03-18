@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Header</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: red;
+            padding: 12px 20px;
+            color: white;
+            width: 100%;
+            position: relative;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .nav-links li {
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 20px;
+            display: block;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+        }
+
+        /* Desktop Centered Navigation */
+        @media screen and (min-width: 769px) {
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .nav-links {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .navbar h1 {
+                position: relative;
+                left: 0;
+            }
+        }
+
+        /* Mobile Navigation */
+        @media screen and (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: red;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                padding: 10px 0;
+                z-index: 1000;
+                transition: all 0.3s ease-in-out;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- FontAwesome Link (Place in the <head> of your HTML file) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1 class="logo">Mansfield Gas & Exhaust</h1>
+    
+        <nav class="nav-container">
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./services.html">Services</a></li>
+                
+            </ul>
+        </nav>
+    
+        <div class="contact-info">
+            <p>123 Main Street, Mansfield, TX</p>
+            <p>(123) 456-7890</p>
+            <p>info@mansfieldgas.com</p>
+        </div>
+    
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+    
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+    
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+    
+    <style>
+        /* Header */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: red;
+            padding: 12px 40px;
+            color: white;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+    
+        /* Navigation Container */
+        .nav-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+        }
+    
+        /* Navigation Links */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 0;
+        }
+    
+        .nav-links li {
+            list-style: none;
+        }
+    
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 12px 20px;
+            display: block;
+        }
+    
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    
+        /* Contact Info (on the far right) */
+        .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    
+        /* Mobile Navigation */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+    
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+        }
+    
+        /* Desktop View */
+        @media screen and (min-width: 1024px) {
+            .navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+    
+            .nav-links {
+                display: flex !important;
+                flex-direction: row;
+                width: auto;
+                background: transparent;
+            }
+    
+            .hamburger {
+                display: none;
+            }
+        }
+    
+        /* Mobile View */
+        @media screen and (max-width: 768px) {
+            .contact-info {
+                display: none;
+            }
+    
+            .hamburger {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+    
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: red;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 0;
+                z-index: 1000;
+            }
+    
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+    
+
+    <!-- start of hero section -->
+
+    <section class="hero">
+        <div class="hero-overlay"></div> <!-- Overlay Element -->
+        <div class="hero-content">
+            <h1>Welcome to Mansfield Gas & Exhaust</h1>
+            <p>Your trusted source for reliable services.</p>
+            <a href="./services.html" class="hero-btn">Get Started</a>
+        </div>
+    </section>
+    
+    <style>
+
+        .hero {
+            width: 100%;
+            height: 90vh;
+            background: url('./images/propane.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 20px;
+        }
+    
+        /* Black Overlay */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Adjust transparency (0.5 = 50% dark) */
+            z-index: 1;
+        }
+    
+        /* Ensure Content Stays Above the Overlay */
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+    
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+    
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+    
+        .hero-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            color: red;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+    
+        .hero-btn:hover {
+            background: #fff;
+            color: darkred;
+        }
+    
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+    <!-- end of hero section -->
+<!-- Propane Services Section -->
+<!-- Propane Services Section -->
+<!-- Propane Services Section -->
+<section class="propane-services">
+    <h2>Propane Available In-Store</h2>
+    <div class="service-box">
+        <!-- Propane Tank Icon (SVG) -->
+        <svg class="propane-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" width="60px" height="60px">
+            <path d="M9 2v2H5v2h4v2H7c-1.1 0-2 .9-2 2v2H4v8h2v2h12v-2h2v-8h-1v-2c0-1.1-.9-2-2-2h-2V6h4V4h-4V2h-4zm0 8h6v2H9v-2zm-3 4h12v6H6v-6z"/>
+        </svg>
+
+        <h3>Buy Propane at Our Store</h3>
+        <p>Stop by our location to purchase high-quality propane for your home, business, or outdoor needs.</p>
+    </div>
+</section>
+
+<style>
+    /* Propane Services Section */
+    .propane-services {
+        text-align: center;
+        padding: 60px 20px;
+        background: navy;
+    }
+
+    .propane-services h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .service-box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 350px;
+        margin: 0 auto;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    /* Propane Tank Icon */
+    .propane-icon {
+        display: block;
+        margin: 0 auto 10px;
+    }
+
+    .service-box h3 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: red;
+    }
+
+    .service-box p {
+        font-size: 1rem;
+        color: black;
+    }
+
+    .service-box:hover {
+        transform: scale(1.05);
+    }
+</style>
+<!-- End of Propane Services -->
+
+<!-- Muffler Services Section -->
+<section class="muffler-services">
+    <h2>Our Muffler Services</h2>
+    <div class="muffler-container">
+
+        <!-- Muffler Repair -->
+        <div class="service-box">
+            <i class="fa-solid fa-wrench muffler-icon"></i>
+            <h3>Muffler Repair</h3>
+            <p>We diagnose and fix muffler issues to ensure your vehicle runs smoothly and quietly.</p>
+        </div>
+
+        <!-- Muffler Replacement -->
+        <div class="service-box">
+            <i class="fa-solid fa-car-burst muffler-icon"></i>
+            <h3>Muffler Replacement</h3>
+            <p>We replace damaged or worn-out mufflers with high-quality parts for better performance.</p>
+        </div>
+
+        <!-- New Muffler Installation -->
+        <div class="service-box">
+            <i class="fa-solid fa-car-side muffler-icon"></i>
+            <h3>New Muffler Installation</h3>
+            <p>Upgrade your vehicle with a custom or OEM muffler for improved efficiency and sound.</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+<style>
+    /* Muffler Services Section */
+    .muffler-services {
+        text-align: center;
+        padding: 60px 20px;
+        background: red;
+    }
+
+    .muffler-services h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: navy;
+    }
+
+    .muffler-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .muffler-container .service-box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+
+    /* FontAwesome Icons */
+    .muffler-icon {
+        font-size: 60px;
+        color: navy;
+        margin-bottom: 10px;
+    }
+
+    .muffler-container .service-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: navy;
+    }
+
+    .muffler-container .service-box p {
+        font-size: 1rem;
+        color: black;
+    }
+
+    .muffler-container .service-box:hover {
+        transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .muffler-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
+
+<!-- End of Muffler Services -->
+
+<!-- start footer -->
+ <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Company Info -->
+        <div class="footer-box">
+            <h3>Mansfield Gas & Exhaust</h3>
+            <p>Your trusted provider for propane and muffler services.</p>
+        </div>
+
+        <!-- Quick Links -->
+       
+        <!-- Contact Info -->
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p><i class="fa-solid fa-location-dot"></i> 123 Main Street, Mansfield, TX</p>
+            <p><i class="fa-solid fa-phone"></i> (123) 456-7890</p>
+            <p><i class="fa-solid fa-envelope"></i> info@mansfieldgas.com</p>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 Mansfield Gas & Exhaust. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<!-- FontAwesome Link (Make sure this is in the <head> of your HTML file) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+    /* Footer Section */
+    .footer {
+        background: navy;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .footer-box {
+        flex: 1;
+        min-width: 250px;
+    }
+
+    .footer-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: red;
+    }
+
+    .footer-box p {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links li {
+        margin: 5px 0;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .footer-links a:hover {
+        color: red;
+    }
+
+    .footer-bottom {
+        margin-top: 20px;
+        border-top: 1px solid #444;
+        padding-top: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>
+
+
+<!-- end footer -->
+
+</body>
+</html>
